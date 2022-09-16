@@ -1,0 +1,13 @@
+#!name = GitHub加速
+#!desc = 加速GitHub访问，解决GitHub访问困难的问题。
+#!openUrl = 
+#!author = BOND
+#!homepage = https://github.com/BeeDance/BeeDance
+#!icon = https://raw.githubusercontent.com/BeeDance/BeeDance/master/icon/GitHub.png
+
+[Rewrite]
+#该公益加速源由 [iQDNS/iQZone] 提供
+^https?:\/\/raw.githubusercontent.com https://raw.iqiq.io 302
+
+[MITM]
+hostname=raw.githubusercontent.com
