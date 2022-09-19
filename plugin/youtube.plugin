@@ -5,17 +5,8 @@
 #!homepage = https://github.com/BeeDance/BeeDance
 #!icon = https://raw.githubusercontent.com/BeeDance/BeeDance/master/icon/YouTube.png
 
-[Rule]
-URL-REGEX,^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?adcontext,REJECT-IMG
-URL-REGEX,^https?:\/\/(www|s)\.youtube\.com\/(pagead|ptracking),REJECT-IMG
-URL-REGEX,^https?:\/\/(www|s)\.youtube\.com\/api\/stats\/ads,REJECT-IMG
-URL-REGEX,^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v\d\/player\/ad_break,REJECT-IMG
-URL-REGEX,^https?:\/\/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad,REJECT-IMG
-USER-AGENT,"(^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+)",REJECT-IMG
-
-[Rewrite]
-(^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+) $1$2$3 302
-
+[Script]
+http-request ^https?:\/\/.+?\.googlevideo\.com\/.+&(oad|ctier=L) script-path=https://raw.githubusercontent.com/BeeDance/BeeDance/master/script/youtube/youtube_no_ads.js, requires-body=true, timeout=10, tag=YouTube去广告
 
 [MITM]
-hostname = -redirector*.googlevideo.com,*.googlevideo.com,www.youtube.com,s.youtube.com,youtubei.googleapis.com
+hostname = *.googlevideo.com
